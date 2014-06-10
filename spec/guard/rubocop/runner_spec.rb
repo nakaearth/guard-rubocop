@@ -16,7 +16,7 @@ describe Guard::Rubocop::Runner do
 
     it 'executes rubocop' do
       expect(runner).to receive(:system) do |*args|
-        expect(args.first).to eq('rubocop')
+        expect(args.first).to eq('rake rubocop')
       end
       runner.run
     end
@@ -108,7 +108,7 @@ describe Guard::Rubocop::Runner do
       let(:options) { { cli: %w(--format simple --out simple.txt) } }
 
       it 'adds args for the default formatter for console' do
-        expect(build_command[0..2]).to eq(%w(rubocop --format progress))
+        expect(build_command[0..2]).to eq(['rake rubocop', '--format', 'progress'])
       end
     end
 
